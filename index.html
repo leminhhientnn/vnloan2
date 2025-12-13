@@ -7,794 +7,278 @@
   <meta name="description" content="Vay tín dụng online nhanh chóng, so sánh nhiều đơn vị cho vay chỉ trên một trang. Đăng ký 100% online, xét duyệt nhanh, giải ngân trong ngày.">
   <style>
     /* ====== RESET CƠ BẢN ====== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: #0f172a;
       background: radial-gradient(circle at top left, #bbf7d0 0, #ecfeff 30%, #f9fafb 60%, #e5e7eb 100%);
       line-height: 1.6;
     }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
 
     /* ====== LAYOUT CHUNG ====== */
-    .site-shell {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 18px 14px 42px;
-    }
-
-    @media (min-width: 960px) {
-      .site-shell {
-        padding: 22px 8px 52px;
-      }
-    }
+    .site-shell { max-width: 1120px; margin: 0 auto; padding: 18px 14px 42px; }
+    @media (min-width: 960px) { .site-shell { padding: 22px 8px 52px; } }
 
     /* ====== HEADER ====== */
-    .top-bar {
-      position: sticky;
-      top: 10px;
-      z-index: 50;
-      margin-bottom: 18px;
-    }
-
+    .top-bar { position: sticky; top: 10px; z-index: 50; margin-bottom: 18px; }
     .top-bar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(16px);
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      padding: 10px 16px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(16px);
       box-shadow: 0 14px 40px rgba(15, 23, 42, 0.16);
       border: 1px solid rgba(148, 163, 184, 0.25);
     }
-
-    .brand-mark {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .brand-mark { display: flex; align-items: center; gap: 10px; }
     .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 16px;
-      padding: 2px;
+      width: 40px; height: 40px; border-radius: 16px; padding: 2px;
       background: conic-gradient(from 160deg, #22c55e, #22c55e, #22c55e, #0ea5e9, #22c55e);
     }
-
     .brand-logo-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 14px;
-      background: #ecfdf5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      color: #16a34a;
-      font-size: 18px;
-      letter-spacing: 0.05em;
+      width: 100%; height: 100%; border-radius: 14px; background: #ecfdf5;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: #16a34a; font-size: 18px; letter-spacing: 0.05em;
     }
+    .brand-text-main { display: flex; flex-direction: column; gap: 1px; }
+    .brand-name { font-weight: 800; font-size: 17px; letter-spacing: -0.03em; }
+    .brand-caption { font-size: 11px; text-transform: uppercase; color: #6b7280; letter-spacing: 0.18em; }
 
-    .brand-text-main {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .brand-name {
-      font-weight: 800;
-      font-size: 17px;
-      letter-spacing: -0.03em;
-    }
-
-    .brand-caption {
-      font-size: 11px;
-      text-transform: uppercase;
-      color: #6b7280;
-      letter-spacing: 0.18em;
-    }
-
-    .top-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
+    .top-right { display: flex; align-items: center; gap: 10px; }
     .chip-secure {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid #bbf7d0;
-      background: #ecfdf5;
-      font-size: 11px;
-      color: #166534;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 999px;
+      border: 1px solid #bbf7d0; background: #ecfdf5;
+      font-size: 11px; color: #166534;
     }
-
     .chip-secure-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
+      width: 8px; height: 8px; border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, #bbf7d0, #22c55e);
       box-shadow: 0 0 6px rgba(34, 197, 94, 0.9);
     }
-
-    .top-cta {
-      display: none;
-    }
-
+    .top-cta { display: none; }
     .btn-main {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 16px;
-      border-radius: 999px;
-      border: none;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 8px 16px; border-radius: 999px; border: none;
       background: linear-gradient(135deg, #22c55e, #16a34a);
-      color: #f9fafb;
-      font-size: 13px;
-      font-weight: 600;
-      gap: 6px;
-      cursor: pointer;
+      color: #f9fafb; font-size: 13px; font-weight: 600; gap: 6px; cursor: pointer;
       box-shadow: 0 12px 30px rgba(22, 163, 74, 0.6);
       transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
     }
-
-    .btn-main:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 42px rgba(22, 163, 74, 0.7);
-      filter: brightness(1.02);
-    }
-
-    .btn-main span.icon {
-      font-size: 15px;
-    }
-
-    @media (min-width: 768px) {
-      .top-cta {
-        display: inline-flex;
-      }
-    }
+    .btn-main:hover { transform: translateY(-1px); box-shadow: 0 16px 42px rgba(22, 163, 74, 0.7); filter: brightness(1.02); }
+    .btn-main span.icon { font-size: 15px; }
+    @media (min-width: 768px) { .top-cta { display: inline-flex; } }
 
     /* ====== HERO ====== */
-    .hero-block {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr);
-      gap: 18px;
-      margin-bottom: 28px;
-    }
-
-    @media (min-width: 960px) {
-      .hero-block {
-        grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.05fr);
-      }
-    }
+    .hero-block { display: grid; grid-template-columns: minmax(0, 1.2fr); gap: 18px; margin-bottom: 28px; }
+    @media (min-width: 960px) { .hero-block { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.05fr); } }
 
     .hero-left {
       background: linear-gradient(135deg, #ecfdf3, #e0f2fe);
-      border-radius: 26px;
-      padding: 22px 18px 18px;
+      border-radius: 26px; padding: 22px 18px 18px;
       box-shadow: 0 18px 55px rgba(15, 23, 42, 0.18);
       border: 1px solid rgba(148, 163, 184, 0.25);
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-
     .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 4px 10px;
-      border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 4px 10px; border-radius: 999px;
       background: rgba(16, 185, 129, 0.12);
       border: 1px solid rgba(34, 197, 94, 0.55);
-      font-size: 11px;
-      color: #047857;
-      margin-bottom: 10px;
+      font-size: 11px; color: #047857; margin-bottom: 10px;
     }
-
     .hero-label span.tag {
-      background: #16a34a;
-      color: white;
-      padding: 2px 7px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      font-size: 10px;
-      font-weight: 700;
+      background: #16a34a; color: white; padding: 2px 7px;
+      border-radius: 999px; text-transform: uppercase; letter-spacing: 0.09em;
+      font-size: 10px; font-weight: 700;
     }
-
-    .hero-title {
-      font-size: 24px;
-      line-height: 1.2;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .hero-title span.highlight {
-      color: #16a34a;
-    }
-
-    @media (min-width: 960px) {
-      .hero-title {
-        font-size: 30px;
-      }
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      color: #6b7280;
-      max-width: 520px;
-      margin-bottom: 16px;
-    }
-
-    .hero-metrics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-
+    .hero-title { font-size: 24px; line-height: 1.2; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .hero-title span.highlight { color: #16a34a; }
+    @media (min-width: 960px) { .hero-title { font-size: 30px; } }
+    .hero-sub { font-size: 14px; color: #6b7280; max-width: 520px; margin-bottom: 16px; }
+    .hero-metrics { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
     .metric-box {
-      min-width: 120px;
-      background: rgba(255, 255, 255, 0.92);
-      border-radius: 16px;
-      padding: 8px 10px;
-      border: 1px solid rgba(209, 213, 219, 0.8);
+      min-width: 120px; background: rgba(255, 255, 255, 0.92);
+      border-radius: 16px; padding: 8px 10px; border: 1px solid rgba(209, 213, 219, 0.8);
     }
-
-    .metric-label {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
-    .metric-value {
-      font-size: 15px;
-      font-weight: 700;
-      margin-top: 2px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-top: 6px;
-    }
-
-    .hero-note {
-      font-size: 11px;
-      color: #6b7280;
-    }
-
+    .metric-label { font-size: 11px; color: #6b7280; }
+    .metric-value { font-size: 15px; font-weight: 700; margin-top: 2px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 6px; }
+    .hero-note { font-size: 11px; color: #6b7280; }
     .hero-alert-box {
-      margin-top: 12px;
-      border-radius: 16px;
-      padding: 10px 12px;
+      margin-top: 12px; border-radius: 16px; padding: 10px 12px;
       background: rgba(248, 250, 252, 0.9);
-      border: 1px dashed #9ca3af;
-      font-size: 11px;
-      color: #4b5563;
+      border: 1px dashed #9ca3af; font-size: 11px; color: #4b5563;
     }
+    .hero-alert-box strong { color: #b91c1c; }
 
-    .hero-alert-box strong {
-      color: #b91c1c;
-    }
-
-    /* HERO RIGHT */
-    .hero-right {
-      display: grid;
-      gap: 12px;
-    }
-
+    .hero-right { display: grid; gap: 12px; }
     .hero-card {
-      border-radius: 20px;
-      background: #ffffff;
-      padding: 14px 12px;
+      border-radius: 20px; background: #ffffff; padding: 14px 12px;
       box-shadow: 0 12px 38px rgba(15, 23, 42, 0.08);
       border: 1px solid rgba(209, 213, 219, 0.7);
     }
-
-    .hero-card-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-
+    .hero-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
     .hero-card-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 12px;
-      background: #ecfdf5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
+      width: 30px; height: 30px; border-radius: 12px; background: #ecfdf5;
+      display: flex; align-items: center; justify-content: center; font-size: 18px;
     }
-
-    .hero-card-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .hero-card-text {
-      font-size: 13px;
-      color: #6b7280;
-    }
+    .hero-card-title { font-size: 14px; font-weight: 600; }
+    .hero-card-text { font-size: 13px; color: #6b7280; }
 
     /* ====== SECTION TIÊU ĐỀ CHUNG ====== */
-    .section-header {
-      margin-bottom: 10px;
-    }
-
-    .section-eyebrow {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #16a34a;
-      margin-bottom: 2px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .section-sub {
-      font-size: 13px;
-      color: #6b7280;
-    }
+    .section-header { margin-bottom: 10px; }
+    .section-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: #16a34a; margin-bottom: 2px; }
+    .section-title { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; }
+    .section-sub { font-size: 13px; color: #6b7280; }
 
     /* ====== ƯU ĐIỂM ====== */
-    .feature-grid {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    @media (min-width: 768px) {
-      .feature-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-
+    .feature-grid { margin-top: 10px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    @media (min-width: 768px) { .feature-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
     .feature-card {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 12px 12px 11px;
+      background: #ffffff; border-radius: 18px; padding: 12px 12px 11px;
       border: 1px solid rgba(209, 213, 219, 0.8);
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
     }
-
-    .feature-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 3px;
-    }
-
-    .feature-text {
-      font-size: 13px;
-      color: #6b7280;
-    }
+    .feature-title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+    .feature-text { font-size: 13px; color: #6b7280; }
 
     /* ====== QUY TRÌNH ====== */
-    .flow-list {
-      margin-top: 8px;
-      border-radius: 18px;
-      background: #f9fafb;
-      border: 1px dashed #d1d5db;
-      padding: 12px;
-    }
-
-    .flow-item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      padding: 6px 0;
-    }
-
+    .flow-list { margin-top: 8px; border-radius: 18px; background: #f9fafb; border: 1px dashed #d1d5db; padding: 12px; }
+    .flow-item { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; }
     .flow-step {
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      background: #bbf7d0;
-      color: #166534;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: 700;
-      flex-shrink: 0;
+      width: 22px; height: 22px; border-radius: 999px; background: #bbf7d0; color: #166534;
+      display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0;
     }
-
-    .flow-body-title {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .flow-body-text {
-      font-size: 13px;
-      color: #6b7280;
-    }
+    .flow-body-title { font-size: 13px; font-weight: 600; }
+    .flow-body-text { font-size: 13px; color: #6b7280; }
 
     /* ====== OFFERS ====== */
-    .offers-wrapper {
-      margin-top: 26px;
-    }
-
-    .offers-top-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      gap: 8px;
-      justify-content: space-between;
-      margin-bottom: 12px;
-    }
-
+    .offers-wrapper { margin-top: 26px; }
+    .offers-top-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; justify-content: space-between; margin-bottom: 12px; }
     .offers-pill {
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      background: #dcfce7;
-      border: 1px solid #bbf7d0;
-      color: #15803d;
-      font-weight: 500;
+      font-size: 11px; padding: 3px 9px; border-radius: 999px; background: #dcfce7;
+      border: 1px solid #bbf7d0; color: #15803d; font-weight: 500;
     }
 
-    .offers-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-    }
-
-    @media (min-width: 768px) {
-      .offers-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 1040px) {
-      .offers-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
+    .offers-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    @media (min-width: 768px) { .offers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1040px) { .offers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
     .offer-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-      padding: 14px 14px 13px;
-      background: #ffffff;
-      border: 1px solid rgba(148, 163, 184, 0.3);
+      position: relative; overflow: hidden;
+      border-radius: 24px; padding: 14px 14px 13px;
+      background: #ffffff; border: 1px solid rgba(148, 163, 184, 0.3);
       box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08);
     }
-
     .offer-item::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+      content: ""; position: absolute; inset: 0;
       background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.08), transparent 55%);
       pointer-events: none;
     }
-
-    .offer-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .offer-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .offer-main-info {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .offer-name {
-      font-size: 15px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-    }
-
-    .offer-subtitle {
-      font-size: 12px;
-      color: #6b7280;
-    }
-
+    .offer-inner { position: relative; z-index: 1; }
+    .offer-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+    .offer-main-info { display: flex; flex-direction: column; gap: 1px; }
+    .offer-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+    .offer-subtitle { font-size: 12px; color: #6b7280; }
     .offer-category {
-      padding: 4px 9px;
-      border-radius: 999px;
-      font-size: 11px;
-      background: rgba(22, 163, 74, 0.08);
-      border: 1px solid rgba(74, 222, 128, 0.7);
-      color: #166534;
-      font-weight: 500;
+      padding: 4px 9px; border-radius: 999px; font-size: 11px;
+      background: rgba(22, 163, 74, 0.08); border: 1px solid rgba(74, 222, 128, 0.7);
+      color: #166534; font-weight: 500;
     }
-
-    .offer-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .offer-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .offer-tag {
-      font-size: 11px;
-      padding: 4px 7px;
-      border-radius: 999px;
-      background: #f3f4f6;
-      border: 1px solid #e5e7eb;
-      color: #374151;
-    }
-
-    .offer-tag strong {
-      font-weight: 600;
-    }
-
-    .offer-note {
-      margin-top: 4px;
-      font-size: 11px;
-      color: #6b7280;
-    }
-
-    .offer-actions {
-      text-align: right;
-    }
-
-    .offer-flag {
-      font-size: 12px;
-      color: #16a34a;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
+    .offer-body { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 10px; align-items: center; margin-bottom: 8px; }
+    .offer-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .offer-tag { font-size: 11px; padding: 4px 7px; border-radius: 999px; background: #f3f4f6; border: 1px solid #e5e7eb; color: #374151; }
+    .offer-tag strong { font-weight: 600; }
+    .offer-note { margin-top: 4px; font-size: 11px; color: #6b7280; }
+    .offer-actions { text-align: right; }
+    .offer-flag { font-size: 12px; color: #16a34a; font-weight: 600; margin-bottom: 4px; }
     .offer-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: #16a34a;
-      border: none;
-      color: #f9fafb;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      padding: 8px 14px; border-radius: 999px; background: #16a34a; border: none;
+      color: #f9fafb; font-weight: 600; font-size: 13px; cursor: pointer;
       box-shadow: 0 12px 32px rgba(22, 163, 74, 0.7);
       transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
     }
-
-    .offer-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 44px rgba(22, 163, 74, 0.8);
-      filter: brightness(1.03);
-    }
-
-    .offer-footer-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: 10px;
-      color: #6b7280;
-      margin-top: 4px;
-    }
-
-    .offer-footer-pill {
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #f3f4f6;
-    }
-
-    .offer-footer-pill span {
-      color: #16a34a;
-      font-weight: 600;
-    }
+    .offer-btn:hover { transform: translateY(-1px); box-shadow: 0 16px 44px rgba(22, 163, 74, 0.8); filter: brightness(1.03); }
+    .offer-footer-tags { display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px; color: #6b7280; margin-top: 4px; }
+    .offer-footer-pill { padding: 4px 8px; border-radius: 999px; background: #f3f4f6; }
+    .offer-footer-pill span { color: #16a34a; font-weight: 600; }
 
     /* ====== FAQ & CẢNH BÁO ====== */
-    .info-section {
-      margin-top: 26px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr);
-      gap: 18px;
-    }
-
-    @media (min-width: 960px) {
-      .info-section {
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
-      }
-    }
-
+    .info-section { margin-top: 26px; display: grid; grid-template-columns: minmax(0, 1.15fr); gap: 18px; }
+    @media (min-width: 960px) { .info-section { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr); } }
     .faq-card {
-      background: #ffffff;
-      border-radius: 22px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 16px 14px;
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+      background: #ffffff; border-radius: 22px; border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 16px 14px; box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
     }
-
     .faq-chip {
-      display: inline-block;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: #dcfce7;
-      border: 1px solid #bbf7d0;
-      font-size: 11px;
-      color: #15803d;
-      font-weight: 500;
-      margin-bottom: 8px;
+      display: inline-block; padding: 4px 8px; border-radius: 999px;
+      background: #dcfce7; border: 1px solid #bbf7d0; font-size: 11px; color: #15803d;
+      font-weight: 500; margin-bottom: 8px;
     }
-
-    .faq-item + .faq-item {
-      border-top: 1px dashed #e5e7eb;
-      margin-top: 10px;
-      padding-top: 10px;
-    }
-
-    .faq-q {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .faq-a {
-      font-size: 13px;
-      color: #6b7280;
-      margin-top: 2px;
-    }
+    .faq-item + .faq-item { border-top: 1px dashed #e5e7eb; margin-top: 10px; padding-top: 10px; }
+    .faq-q { font-size: 13px; font-weight: 600; }
+    .faq-a { font-size: 13px; color: #6b7280; margin-top: 2px; }
 
     .legal-card {
-      background: #f9fafb;
-      border-radius: 20px;
-      border: 1px dashed #d1d5db;
-      padding: 14px 13px;
-      font-size: 12px;
-      color: #4b5563;
+      background: #f9fafb; border-radius: 20px; border: 1px dashed #d1d5db;
+      padding: 14px 13px; font-size: 12px; color: #4b5563;
     }
-
-    .legal-card strong {
-      color: #b91c1c;
-    }
-
-    .legal-list {
-      margin-top: 6px;
-      padding-left: 18px;
-    }
-
-    .legal-list li {
-      margin-bottom: 4px;
-    }
+    .legal-card strong { color: #b91c1c; }
+    .legal-list { margin-top: 6px; padding-left: 18px; }
+    .legal-list li { margin-bottom: 4px; }
 
     /* ====== FOOTER ====== */
     .site-footer {
-      margin-top: 28px;
-      padding-top: 14px;
-      border-top: 1px solid #e5e7eb;
-      font-size: 11px;
-      color: #6b7280;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: space-between;
-      align-items: center;
+      margin-top: 28px; padding-top: 14px; border-top: 1px solid #e5e7eb;
+      font-size: 11px; color: #6b7280;
+      display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center;
     }
-
-    .footer-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      text-decoration: underline;
-      text-decoration-style: dotted;
-      text-underline-offset: 3px;
-    }
+    .footer-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .footer-links a { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
   </style>
 </head>
+
 <body>
   <div class="site-shell">
     <!-- HEADER -->
     <div class="top-bar">
       <div class="top-bar-inner">
         <div class="brand-mark">
-          <div class="brand-logo">
-            <div class="brand-logo-inner">VT</div>
-          </div>
+          <div class="brand-logo"><div class="brand-logo-inner">VT</div></div>
           <div class="brand-text-main">
             <div class="brand-name">Vay Tín Online</div>
             <div class="brand-caption">SO SÁNH &amp; GIỚI THIỆU KHOẢN VAY</div>
           </div>
         </div>
         <div class="top-right">
-          <div class="chip-secure">
-            <span class="chip-secure-dot"></span>
-            Kết nối bảo mật
-          </div>
-          <a href="#offers" class="btn-main top-cta">
-            Xem danh sách vay
-            <span class="icon">↓</span>
-          </a>
+          <div class="chip-secure"><span class="chip-secure-dot"></span> Kết nối bảo mật</div>
+          <a href="#offers" class="btn-main top-cta">Xem danh sách vay <span class="icon">↓</span></a>
         </div>
       </div>
     </div>
 
     <!-- HERO -->
     <section class="hero-block">
-      <!-- LEFT -->
       <div class="hero-left">
-        <div class="hero-label">
-          <span class="tag">Online 24/7</span>
-          Nộp hồ sơ vay ngay trên điện thoại
-        </div>
-        <h1 class="hero-title">
-          Vay tiền online <span class="highlight">nhanh – minh bạch – an toàn</span>
-        </h1>
+        <div class="hero-label"><span class="tag">Online 24/7</span> Nộp hồ sơ vay ngay trên điện thoại</div>
+        <h1 class="hero-title">Vay tiền online <span class="highlight">nhanh – minh bạch – an toàn</span></h1>
         <p class="hero-sub">
           Chúng tôi hỗ trợ tổng hợp thông tin, giúp bạn so sánh nhiều đơn vị cho vay uy tín trên một trang.
           Đăng ký hoàn toàn online, xét duyệt nhanh, tiền chuyển thẳng vào tài khoản ngân hàng.
         </p>
 
         <div class="hero-metrics">
-          <div class="metric-box">
-            <div class="metric-label">Hạn mức tham khảo</div>
-            <div class="metric-value">1 – 70 triệu</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-label">Thời gian xét duyệt</div>
-            <div class="metric-value">15 – 30 phút</div>
-          </div>
-          <div class="metric-box">
-            <div class="metric-label">Hỗ trợ</div>
-            <div class="metric-value">Toàn quốc</div>
-          </div>
+          <div class="metric-box"><div class="metric-label">Hạn mức tham khảo</div><div class="metric-value">1 – 70 triệu</div></div>
+          <div class="metric-box"><div class="metric-label">Thời gian xét duyệt</div><div class="metric-value">15 – 30 phút</div></div>
+          <div class="metric-box"><div class="metric-label">Hỗ trợ</div><div class="metric-value">Toàn quốc</div></div>
         </div>
 
         <div class="hero-actions">
-          <a href="#offers" class="btn-main">
-            Chọn khoản vay phù hợp
-            <span class="icon">⚡</span>
-          </a>
-          <div class="hero-note">
-            Website không thu bất kỳ khoản phí tư vấn nào từ người dùng.
-          </div>
+          <a href="#offers" class="btn-main">Chọn khoản vay phù hợp <span class="icon">⚡</span></a>
+          <div class="hero-note">Website không thu bất kỳ khoản phí tư vấn nào từ người dùng.</div>
         </div>
 
         <div class="hero-alert-box">
@@ -803,7 +287,6 @@
         </div>
       </div>
 
-      <!-- RIGHT -->
       <div class="hero-right">
         <div class="hero-card">
           <div class="hero-card-header">
@@ -851,73 +334,29 @@
       <div class="section-header">
         <div class="section-eyebrow">Tại sao nên đăng ký online</div>
         <div class="section-title">Ưu điểm &amp; cách hoạt động</div>
-        <div class="section-sub">
-          Tiết kiệm thời gian, dễ so sánh và kiểm soát dòng tiền của bạn.
-        </div>
+        <div class="section-sub">Tiết kiệm thời gian, dễ so sánh và kiểm soát dòng tiền của bạn.</div>
       </div>
 
       <div class="feature-grid">
         <div class="feature-card">
           <div class="feature-title">Không phải đi lại nhiều</div>
-          <div class="feature-text">
-            Toàn bộ quy trình từ đăng ký đến phê duyệt đều có thể thực hiện trên điện thoại
-            hoặc máy tính có kết nối internet.
-          </div>
+          <div class="feature-text">Toàn bộ quy trình từ đăng ký đến phê duyệt đều có thể thực hiện trên điện thoại hoặc máy tính có kết nối internet.</div>
         </div>
         <div class="feature-card">
           <div class="feature-title">So sánh nhiều đơn vị</div>
-          <div class="feature-text">
-            Thay vì hỏi từng nơi, bạn có thể xem tổng quan hạn mức, thời gian,
-            điều kiện cơ bản của nhiều đơn vị cho vay trên cùng một trang.
-          </div>
+          <div class="feature-text">Thay vì hỏi từng nơi, bạn có thể xem tổng quan hạn mức, thời gian, điều kiện cơ bản của nhiều đơn vị cho vay trên cùng một trang.</div>
         </div>
         <div class="feature-card">
           <div class="feature-title">Chủ động kế hoạch trả nợ</div>
-          <div class="feature-text">
-            Thời hạn và số tiền trả góp hàng tháng được hiển thị rõ ràng trên hệ thống của bên cho vay,
-            giúp bạn dễ dàng lên kế hoạch chi tiêu.
-          </div>
+          <div class="feature-text">Thời hạn và số tiền trả góp hàng tháng được hiển thị rõ ràng trên hệ thống của bên cho vay, giúp bạn dễ dàng lên kế hoạch chi tiêu.</div>
         </div>
       </div>
 
       <div class="flow-list">
-        <div class="flow-item">
-          <div class="flow-step">1</div>
-          <div>
-            <div class="flow-body-title">Chọn 1–3 đơn vị phù hợp</div>
-            <div class="flow-body-text">
-              Dựa trên nhu cầu và khả năng trả nợ, hãy ưu tiên các gói vay có thông tin rõ ràng, minh bạch.
-            </div>
-          </div>
-        </div>
-        <div class="flow-item">
-          <div class="flow-step">2</div>
-          <div>
-            <div class="flow-body-title">Điền thông tin đăng ký</div>
-            <div class="flow-body-text">
-              Cung cấp thông tin chính xác (họ tên, số CMND/CCCD, địa chỉ, thu nhập, tài khoản nhận tiền...)
-              để tăng tỉ lệ phê duyệt.
-            </div>
-          </div>
-        </div>
-        <div class="flow-item">
-          <div class="flow-step">3</div>
-          <div>
-            <div class="flow-body-title">Chờ xét duyệt &amp; xác minh</div>
-            <div class="flow-body-text">
-              Đơn vị cho vay có thể gọi điện hoặc gửi SMS để xác nhận. Hãy nghe máy và trả lời trung thực.
-            </div>
-          </div>
-        </div>
-        <div class="flow-item">
-          <div class="flow-step">4</div>
-          <div>
-            <div class="flow-body-title">Ký hợp đồng &amp; nhận tiền</div>
-            <div class="flow-body-text">
-              Sau khi đồng ý với các điều khoản, khoản vay sẽ được giải ngân. Bạn cần thanh toán đúng lịch để tránh phí phát sinh.
-            </div>
-          </div>
-        </div>
+        <div class="flow-item"><div class="flow-step">1</div><div><div class="flow-body-title">Chọn 1–3 đơn vị phù hợp</div><div class="flow-body-text">Dựa trên nhu cầu và khả năng trả nợ, hãy ưu tiên các gói vay có thông tin rõ ràng, minh bạch.</div></div></div>
+        <div class="flow-item"><div class="flow-step">2</div><div><div class="flow-body-title">Điền thông tin đăng ký</div><div class="flow-body-text">Cung cấp thông tin chính xác (họ tên, số CMND/CCCD, địa chỉ, thu nhập, tài khoản nhận tiền...) để tăng tỉ lệ phê duyệt.</div></div></div>
+        <div class="flow-item"><div class="flow-step">3</div><div><div class="flow-body-title">Chờ xét duyệt &amp; xác minh</div><div class="flow-body-text">Đơn vị cho vay có thể gọi điện hoặc gửi SMS để xác nhận. Hãy nghe máy và trả lời trung thực.</div></div></div>
+        <div class="flow-item"><div class="flow-step">4</div><div><div class="flow-body-title">Ký hợp đồng &amp; nhận tiền</div><div class="flow-body-text">Sau khi đồng ý với các điều khoản, khoản vay sẽ được giải ngân. Bạn cần thanh toán đúng lịch để tránh phí phát sinh.</div></div></div>
       </div>
     </section>
 
@@ -926,302 +365,290 @@
       <div class="offers-top-row">
         <div>
           <div class="section-eyebrow">Danh sách đề xuất</div>
-          <div class="section-title">8 đơn vị/ứng dụng vay đang mở đăng ký</div>
+          <div class="section-title">9 đơn vị/ứng dụng vay đang mở đăng ký</div>
           <div class="section-sub">
             Bấm “Đăng ký ngay” để chuyển đến trang đăng ký chính thức của từng đơn vị. Link sẽ được cập nhật dần.
           </div>
         </div>
-        <div class="offers-pill">
-          8 offers • Link aff đang chờ gắn
-        </div>
+        <div class="offers-pill">9 đơn vị vay • Đề xuất</div>
       </div>
 
       <div class="offers-grid">
-        <!-- LƯU Ý: THAY href="#" BẰNG LINK AFF CỦA BẠN -->
-        <!-- OFFER 1 -->
+        <!-- OFFER 1: Mazilla -->
         <article class="offer-item">
           <div class="offer-inner">
             <div class="offer-head">
               <div class="offer-main-info">
-                <div class="offer-name">Khoản Vay A1</div>
-                <div class="offer-subtitle">Phù hợp khách mới, khoản vay nhỏ &amp; vừa</div>
+                <div class="offer-name">Mazilla</div>
+                <div class="offer-subtitle">Đăng ký online, quy trình nhanh</div>
               </div>
               <div class="offer-category">Vay tiêu dùng cá nhân</div>
             </div>
             <div class="offer-body">
               <div>
                 <div class="offer-tags">
-                  <div class="offer-tag"><strong>Hạn mức:</strong> 1 – 20 triệu</div>
-                  <div class="offer-tag"><strong>Kỳ hạn:</strong> 3 – 12 tháng</div>
-                  <div class="offer-tag"><strong>Duyệt hồ sơ:</strong> 15 – 30 phút</div>
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Xử lý:</strong> Nhanh</div>
                 </div>
-                <div class="offer-note">
-                  * Lãi suất cụ thể, chương trình ưu đãi (nếu có) xem chi tiết tại trang đăng ký của đơn vị cho vay.
-                </div>
+                <div class="offer-note">* Chi tiết lãi/phí xem trực tiếp tại trang đăng ký.</div>
               </div>
               <div class="offer-actions">
-                <div class="offer-flag">Tỉ lệ duyệt tham khảo: cao</div>
-                <a href="#" class="offer-btn" data-offer="1">
-                  Đăng ký ngay
-                  <span>→</span>
-                </a>
+                <div class="offer-flag">Ưu tiên hồ sơ đầy đủ</div>
+                <a href="#" class="offer-btn" data-offer="1">Đăng ký ngay <span>→</span></a>
               </div>
             </div>
             <div class="offer-footer-tags">
-              <div class="offer-footer-pill">Không giữ giấy tờ gốc</div>
               <div class="offer-footer-pill"><span>Online</span> 100%</div>
+              <div class="offer-footer-pill">Xét duyệt theo hồ sơ</div>
             </div>
           </div>
         </article>
 
-        <!-- OFFER 2 -->
+        <!-- OFFER 2: Credy -->
         <article class="offer-item">
           <div class="offer-inner">
             <div class="offer-head">
               <div class="offer-main-info">
-                <div class="offer-name">Khoản Vay A2</div>
-                <div class="offer-subtitle">Ưu tiên khách hàng có lương chuyển khoản</div>
+                <div class="offer-name">Credy</div>
+                <div class="offer-subtitle">Hồ sơ cơ bản, thao tác nhanh</div>
               </div>
-              <div class="offer-category">Tín chấp theo lương</div>
+              <div class="offer-category">Tín chấp online</div>
             </div>
             <div class="offer-body">
               <div>
                 <div class="offer-tags">
-                  <div class="offer-tag"><strong>Hạn mức:</strong> 10 – 50 triệu</div>
-                  <div class="offer-tag"><strong>Kỳ hạn:</strong> 6 – 24 tháng</div>
-                  <div class="offer-tag"><strong>Cần:</strong> Sao kê 3–6 tháng</div>
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Xác minh:</strong> Có thể gọi điện</div>
                 </div>
-                <div class="offer-note">
-                  * Một số trường hợp yêu cầu hợp đồng lao động/bảo hiểm xã hội để xác minh nguồn thu.
-                </div>
+                <div class="offer-note">* Hãy đảm bảo thông tin chính xác để tăng tỉ lệ duyệt.</div>
               </div>
               <div class="offer-actions">
-                <div class="offer-flag">Định hướng khoản vay trung hạn</div>
-                <a href="#" class="offer-btn" data-offer="2">
-                  Đăng ký ngay
-                  <span>→</span>
-                </a>
+                <div class="offer-flag">Phù hợp khách cần nhanh</div>
+                <a href="#" class="offer-btn" data-offer="2">Đăng ký ngay <span>→</span></a>
               </div>
             </div>
             <div class="offer-footer-tags">
-              <div class="offer-footer-pill"><span>Giải ngân</span> qua ngân hàng</div>
-              <div class="offer-footer-pill">Hợp đồng rõ ràng</div>
+              <div class="offer-footer-pill">Giải ngân qua ngân hàng</div>
+              <div class="offer-footer-pill"><span>Lưu ý</span> đọc hợp đồng</div>
             </div>
           </div>
         </article>
 
-        <!-- OFFER 3 -->
+        <!-- OFFER 3: Finami -->
         <article class="offer-item">
           <div class="offer-inner">
             <div class="offer-head">
               <div class="offer-main-info">
-                <div class="offer-name">Khoản Vay A3</div>
-                <div class="offer-subtitle">Vay nhanh cho người có lịch sử tín dụng tốt</div>
+                <div class="offer-name">Finami</div>
+                <div class="offer-subtitle">Đề xuất khoản vay theo thông tin bạn cung cấp</div>
               </div>
-              <div class="offer-category">Tái vay linh hoạt</div>
+              <div class="offer-category">Gợi ý sản phẩm vay</div>
             </div>
             <div class="offer-body">
               <div>
                 <div class="offer-tags">
-                  <div class="offer-tag"><strong>Hạn mức:</strong> 5 – 30 triệu</div>
-                  <div class="offer-tag"><strong>Kỳ hạn:</strong> 3 – 18 tháng</div>
-                  <div class="offer-tag"><strong>Hỗ trợ:</strong> Hầu hết ngân hàng</div>
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Hỗ trợ:</strong> Nhiều ngân hàng</div>
                 </div>
-                <div class="offer-note">
-                  * Có thể kiểm tra CIC; chi tiết quy định do từng đơn vị áp dụng.
-                </div>
+                <div class="offer-note">* Có thể kiểm tra lịch sử tín dụng tuỳ từng đơn vị.</div>
               </div>
               <div class="offer-actions">
-                <div class="offer-flag">Ưu tiên khách hàng trả nợ đúng hạn</div>
-                <a href="#" class="offer-btn" data-offer="3">
-                  Đăng ký ngay
-                  <span>→</span>
-                </a>
+                <div class="offer-flag">Ưu tiên khách trả đúng hạn</div>
+                <a href="#" class="offer-btn" data-offer="3">Đăng ký ngay <span>→</span></a>
               </div>
             </div>
             <div class="offer-footer-tags">
               <div class="offer-footer-pill">Thủ tục tối giản</div>
-              <div class="offer-footer-pill"><span>Giải ngân</span> trong ngày</div>
+              <div class="offer-footer-pill"><span>Online</span> tiện lợi</div>
             </div>
           </div>
         </article>
 
-        <!-- OFFER 4 -->
+        <!-- OFFER 4: Binixo -->
         <article class="offer-item">
           <div class="offer-inner">
             <div class="offer-head">
               <div class="offer-main-info">
-                <div class="offer-name">Khoản Vay A4</div>
-                <div class="offer-subtitle">Khoản vay ngắn hạn, đáp ứng nhu cầu chi tiêu gấp</div>
+                <div class="offer-name">Binixo</div>
+                <div class="offer-subtitle">Phù hợp nhu cầu chi tiêu ngắn hạn</div>
               </div>
-              <div class="offer-category">Vay ngắn ngày</div>
+              <div class="offer-category">Vay nhanh</div>
             </div>
             <div class="offer-body">
               <div>
                 <div class="offer-tags">
-                  <div class="offer-tag"><strong>Hạn mức:</strong> 500k – 10 triệu</div>
-                  <div class="offer-tag"><strong>Kỳ hạn:</strong> 7 – 90 ngày</div>
-                  <div class="offer-tag"><strong>Duyệt:</strong> Tự động</div>
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Duyệt:</strong> Theo quy trình</div>
                 </div>
-                <div class="offer-note">
-                  * Chỉ nên dùng khi đã chắc chắn kế hoạch trả nợ, tránh bị phạt chậm trả.
-                </div>
+                <div class="offer-note">* Chỉ vay khi đã chắc chắn kế hoạch trả nợ.</div>
               </div>
               <div class="offer-actions">
-                <div class="offer-flag">Phù hợp chi tiêu ngắn hạn</div>
-                <a href="#" class="offer-btn" data-offer="4">
-                  Đăng ký ngay
-                  <span>→</span>
-                </a>
+                <div class="offer-flag">Phù hợp gấp</div>
+                <a href="#" class="offer-btn" data-offer="4">Đăng ký ngay <span>→</span></a>
               </div>
             </div>
             <div class="offer-footer-tags">
-              <div class="offer-footer-pill">Nhận tiền rất nhanh</div>
+              <div class="offer-footer-pill">Nhận tiền nhanh</div>
               <div class="offer-footer-pill"><span>Nhắc hạn</span> qua SMS/app</div>
             </div>
           </div>
         </article>
 
-        <!-- OFFER 5 -->
+        <!-- OFFER 5: Credilo -->
         <article class="offer-item">
           <div class="offer-inner">
             <div class="offer-head">
               <div class="offer-main-info">
-                <div class="offer-name">Khoản Vay B1</div>
-                <div class="offer-subtitle">Dành cho hộ kinh doanh, chủ shop</div>
+                <div class="offer-name">Credilo</div>
+                <div class="offer-subtitle">Tổng hợp đề xuất khoản vay theo hồ sơ</div>
               </div>
-              <div class="offer-category">Hỗ trợ tự doanh</div>
+              <div class="offer-category">So sánh khoản vay</div>
             </div>
             <div class="offer-body">
               <div>
                 <div class="offer-tags">
-                  <div class="offer-tag"><strong>Hạn mức:</strong> 10 – 70 triệu</div>
-                  <div class="offer-tag"><strong>Kỳ hạn:</strong> 6 – 36 tháng</div>
-                  <div class="offer-tag"><strong>Cần:</strong> Giấy tờ kinh doanh</div>
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Yêu cầu:</strong> Theo đối tác</div>
                 </div>
-                <div class="offer-note">
-                  * Một số nơi yêu cầu chứng minh doanh thu bằng hóa đơn, sổ sách hoặc sao kê ngân hàng.
-                </div>
+                <div class="offer-note">* Chi phí/lãi suất phụ thuộc đối tác và đánh giá hồ sơ.</div>
               </div>
               <div class="offer-actions">
-                <div class="offer-flag">Phù hợp mở rộng kinh doanh</div>
-                <a href="#" class="offer-btn" data-offer="5">
-                  Đăng ký ngay
-                  <span>→</span>
-                </a>
+                <div class="offer-flag">Phù hợp so sánh nhanh</div>
+                <a href="#" class="offer-btn" data-offer="5">Đăng ký ngay <span>→</span></a>
               </div>
             </div>
             <div class="offer-footer-tags">
-              <div class="offer-footer-pill"><span>Không</span> cần thế chấp lớn</div>
-              <div class="offer-footer-pill">Thanh toán linh hoạt</div>
+              <div class="offer-footer-pill">Minh bạch thông tin</div>
+              <div class="offer-footer-pill"><span>Online</span> 100%</div>
             </div>
           </div>
         </article>
 
-        <!-- OFFER 6 -->
+        <!-- OFFER 6: Finllo -->
         <article class="offer-item">
           <div class="offer-inner">
             <div class="offer-head">
               <div class="offer-main-info">
-                <div class="offer-name">Khoản Vay B2</div>
-                <div class="offer-subtitle">Chương trình trả góp dài hơn cho khoản vay lớn</div>
+                <div class="offer-name">Finllo</div>
+                <div class="offer-subtitle">Đăng ký nhanh, xét duyệt theo hồ sơ</div>
               </div>
-              <div class="offer-category">Trả góp dài hạn</div>
+              <div class="offer-category">Vay tín chấp</div>
             </div>
             <div class="offer-body">
               <div>
                 <div class="offer-tags">
-                  <div class="offer-tag"><strong>Hạn mức:</strong> 20 – 70 triệu</div>
-                  <div class="offer-tag"><strong>Kỳ hạn:</strong> 12 – 36 tháng</div>
-                  <div class="offer-tag"><strong>Hình thức:</strong> Góp hàng tháng</div>
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Hình thức:</strong> Online</div>
                 </div>
-                <div class="offer-note">
-                  * Phù hợp mua sắm lớn hoặc tái cơ cấu các khoản nợ lãi cao hơn.
-                </div>
+                <div class="offer-note">* Phù hợp tái cơ cấu khoản chi phí ngắn hạn.</div>
               </div>
               <div class="offer-actions">
-                <div class="offer-flag">Góp đều, dễ dự trù chi phí</div>
-                <a href="#" class="offer-btn" data-offer="6">
-                  Đăng ký ngay
-                  <span>→</span>
-                </a>
+                <div class="offer-flag">Dễ thao tác</div>
+                <a href="#" class="offer-btn" data-offer="6">Đăng ký ngay <span>→</span></a>
               </div>
             </div>
             <div class="offer-footer-tags">
               <div class="offer-footer-pill"><span>Lãi suất</span> theo hồ sơ</div>
-              <div class="offer-footer-pill">Tư vấn chi tiết</div>
+              <div class="offer-footer-pill">Tư vấn theo đối tác</div>
             </div>
           </div>
         </article>
 
-        <!-- OFFER 7 -->
+        <!-- OFFER 7: Crezu -->
         <article class="offer-item">
           <div class="offer-inner">
             <div class="offer-head">
               <div class="offer-main-info">
-                <div class="offer-name">Khoản Vay B3</div>
-                <div class="offer-subtitle">Vay linh hoạt cho nhu cầu chi tiêu gia đình</div>
+                <div class="offer-name">Crezu</div>
+                <div class="offer-subtitle">Gợi ý khoản vay phù hợp dựa trên thông tin</div>
               </div>
-              <div class="offer-category">Tiêu dùng gia đình</div>
+              <div class="offer-category">Gợi ý sản phẩm vay</div>
             </div>
             <div class="offer-body">
               <div>
                 <div class="offer-tags">
-                  <div class="offer-tag"><strong>Hạn mức:</strong> 3 – 30 triệu</div>
-                  <div class="offer-tag"><strong>Kỳ hạn:</strong> 6 – 18 tháng</div>
-                  <div class="offer-tag"><strong>Duyệt:</strong> Gọi xác minh</div>
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Duyệt:</strong> Theo đối tác</div>
                 </div>
-                <div class="offer-note">
-                  * Phù hợp chi tiêu thiết yếu, sửa chữa nhà cửa, mua sắm đồ dùng cần thiết.
-                </div>
+                <div class="offer-note">* Hãy đọc kỹ điều kiện của từng bên trước khi đăng ký.</div>
               </div>
               <div class="offer-actions">
-                <div class="offer-flag">Cân nhắc kỹ khả năng trả nợ</div>
-                <a href="#" class="offer-btn" data-offer="7">
-                  Đăng ký ngay
-                  <span>→</span>
-                </a>
+                <div class="offer-flag">Tối ưu cho khách mới</div>
+                <a href="#" class="offer-btn" data-offer="7">Đăng ký ngay <span>→</span></a>
               </div>
             </div>
             <div class="offer-footer-tags">
-              <div class="offer-footer-pill">Thanh toán qua ví/Internet Banking</div>
-              <div class="offer-footer-pill"><span>Nhắc lịch</span> tự động</div>
+              <div class="offer-footer-pill">Đề xuất nhanh</div>
+              <div class="offer-footer-pill"><span>Online</span> tiện lợi</div>
             </div>
           </div>
         </article>
 
-        <!-- OFFER 8 -->
+        <!-- OFFER 8: Creditnice -->
         <article class="offer-item">
           <div class="offer-inner">
             <div class="offer-head">
               <div class="offer-main-info">
-                <div class="offer-name">Khoản Vay B4</div>
-                <div class="offer-subtitle">Xem xét cho một số trường hợp nợ xấu nhẹ</div>
+                <div class="offer-name">Creditnice</div>
+                <div class="offer-subtitle">Xét duyệt theo điều kiện từng đối tác</div>
               </div>
               <div class="offer-category">Xem xét linh hoạt</div>
             </div>
             <div class="offer-body">
               <div>
                 <div class="offer-tags">
-                  <div class="offer-tag"><strong>Hạn mức:</strong> 2 – 15 triệu</div>
-                  <div class="offer-tag"><strong>Kỳ hạn:</strong> 3 – 12 tháng</div>
-                  <div class="offer-tag"><strong>Đối tượng:</strong> CIC xấu nhẹ (tuỳ xét duyệt)</div>
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Lưu ý:</strong> Đọc kỹ phí phạt</div>
                 </div>
-                <div class="offer-note">
-                  * Không phải mọi hồ sơ nợ xấu đều được chấp nhận. Cần đọc kỹ điều kiện và chi phí phát sinh.
-                </div>
+                <div class="offer-note">* Không phải mọi hồ sơ đều được duyệt. Ưu tiên minh bạch thông tin.</div>
               </div>
               <div class="offer-actions">
-                <div class="offer-flag">Cực kỳ cần cân nhắc</div>
-                <a href="#" class="offer-btn" data-offer="8">
-                  Đăng ký ngay
-                  <span>→</span>
-                </a>
+                <div class="offer-flag">Cân nhắc kỹ</div>
+                <a href="#" class="offer-btn" data-offer="8">Đăng ký ngay <span>→</span></a>
               </div>
             </div>
             <div class="offer-footer-tags">
               <div class="offer-footer-pill"><span>Chú ý</span> phí phạt, lãi phạt</div>
               <div class="offer-footer-pill">Đọc kỹ hợp đồng</div>
+            </div>
+          </div>
+        </article>
+
+        <!-- OFFER 9: Cashonline -->
+        <article class="offer-item">
+          <div class="offer-inner">
+            <div class="offer-head">
+              <div class="offer-main-info">
+                <div class="offer-name">Cashonline</div>
+                <div class="offer-subtitle">Đăng ký online, chuyển hướng sang trang chính thức</div>
+              </div>
+              <div class="offer-category">Vay online</div>
+            </div>
+            <div class="offer-body">
+              <div>
+                <div class="offer-tags">
+                  <div class="offer-tag"><strong>Hạn mức:</strong> Tuỳ hồ sơ</div>
+                  <div class="offer-tag"><strong>Kỳ hạn:</strong> Tuỳ sản phẩm</div>
+                  <div class="offer-tag"><strong>Xử lý:</strong> Theo đối tác</div>
+                </div>
+                <div class="offer-note">* Xem chi tiết lãi/phí tại trang đăng ký chính thức.</div>
+              </div>
+              <div class="offer-actions">
+                <div class="offer-flag">Phù hợp nhu cầu nhanh</div>
+                <a href="#" class="offer-btn" data-offer="9">Đăng ký ngay <span>→</span></a>
+              </div>
+            </div>
+            <div class="offer-footer-tags">
+              <div class="offer-footer-pill"><span>Online</span> 100%</div>
+              <div class="offer-footer-pill">Xét duyệt theo hồ sơ</div>
             </div>
           </div>
         </article>
@@ -1313,6 +740,29 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ====== AFF LINKS (ĐÃ GẮN 9 LINK) ======
+    const AFF_LINKS = {
+      1: "https://rdr.pdlsd.net/in/offer/2930?aid=109347", // Mazilla
+      2: "https://rdr.pdlsd.net/in/offer/2988?aid=109347", // Credy
+      3: "https://rdr.pdlsd.net/in/offer/3430?aid=109347", // Finami
+      4: "https://rdr.pdlsd.net/in/offer/2785?aid=109347", // Binixo
+      5: "https://rdr.pdlsd.net/in/offer/2929?aid=109347", // Credilo
+      6: "https://rdr.pdlsd.net/in/offer/2981?aid=109347", // Finllo
+      7: "https://rdr.pdlsd.net/in/offer/2638?aid=109347", // Crezu
+      8: "https://rdr.pdlsd.net/in/offer/6312?aid=109347", // Creditnice
+      9: "https://rdr.pdlsd.net/in/offer/8508?aid=109347", // Cashonline
+    };
+
+    document.querySelectorAll('.offer-btn[data-offer]').forEach(btn => {
+      const id = btn.getAttribute('data-offer');
+      const url = AFF_LINKS[id];
+      if (url) {
+        btn.href = url;
+        btn.target = "_blank";
+        btn.rel = "nofollow sponsored noopener";
+      }
+    });
   </script>
 </body>
 </html>
